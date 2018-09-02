@@ -12,8 +12,8 @@
     "precommit": "npm run pretty"
   },
   "engines": {
-    "node": ">= 8.1.0",
-    "npm": ">=5.0.3"
+    "node": "8.1.0",
+    "npm": "5.0.3"
   },
   "browsers": [
     "last 3 chrome versions",
