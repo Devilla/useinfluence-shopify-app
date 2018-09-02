@@ -4,7 +4,7 @@ const chalk = require('chalk');
 const http = require('http');
 const app = require('../server');
 
-const port = '5000';
+const port = '3009';
 app.set('port', port);
 
 const server = http.createServer(app);
