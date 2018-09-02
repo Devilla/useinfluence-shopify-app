@@ -14,17 +14,17 @@ This example app uses Node, Express, Webpack, React, Redux, and Shopify/polaris
 - [x] Example webhook set up
 
 ## Commands
-- `yarn run start` run the server
-- `yarn run dev` run it in development mode with hotreloading
-- `yarn run prod` run it in production mode with compiled assets
-- `yarn run clean` clean the compiled assets directory
+- `npm run start` run the server
+- `npm run dev` run it in development mode with hotreloading
+- `npm run prod` run it in production mode with compiled assets
+- `npm run clean` clean the compiled assets directory
 
 ## Running the project locally
 
 ### Install project dependencies
 - Install Node.js version 8.1.0 or higher. We recommend using [nvm](https://github.com/creationix/nvm) to manage Node versions.
-- Install the [Yarn.js](https://yarnpkg.com/en/docs/install) package manager. Yarn is an alternative to npm that is faster and more reliable.
-- Install project dependencies with `yarn install`
+- Install the [npm.js](https://npmpkg.com/en/docs/install) package manager. npm is an alternative to npm that is faster and more reliable.
+- Install project dependencies with `npm install`
 
 ### Allow your app to talk to Shopify
 - Create a tunnel to localhost:3000 using [forward](https://forwardhq.com/) or [ngrok](https://ngrok.com/)
@@ -42,7 +42,7 @@ This example app uses Node, Express, Webpack, React, Redux, and Shopify/polaris
   - Set Add HOST from your tunnel service as `SHOPIFY_APP_HOST`
   - Add the api key from partners dash as `SHOPIFY_APP_KEY`
   - Add the api secret from partners dash as `SHOPIFY_APP_SECRET`
-- Run `yarn install && yarn run start`
+- Run `npm install && npm run start`
 - Open a browser to `{{ HOST }}/install`
 - Enter your store’s domain and hit install
 - 🚀 🎉

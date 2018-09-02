@@ -5,7 +5,7 @@
   "scripts": {
     "prod": "npm run clean && npm run build && cross-env NODE_ENV=production npm run start",
     "dev": "cross-env NODE_ENV=development npm run start",
-    "start": "npm run clean && npm run build && cross-env NODE_ENV=production npm run start",
+    "start": "nodemon ./bin/www",
     "build": "cross-env NODE_ENV=production webpack --config ./config/webpack.config.js --progress --profile --colors",
     "clean": "rm -rf ./assets && mkdir ./assets",
     "pretty": "prettier --single-quote --trailing-comma es5 --write {client,bin,config,server}{/*,/**/*}.js",
@@ -48,6 +48,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "shopify-api-node": "^2.11.0",
+    "sqlite3": "3.1.9",
     "url": "^0.11.0",
     "webpack-hot-middleware": "^2.18.0",
     "webpack-middleware": "^1.5.1"
