@@ -12,7 +12,8 @@
     "precommit": "yarn run pretty"
   },
   "engines": {
-    "node": ">= 8.1.0"
+    "node": "8.1.1",
+    "npm": "5.0.3"
   },
   "browsers": [
     "last 3 chrome versions",

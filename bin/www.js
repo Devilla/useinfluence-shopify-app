@@ -4,7 +4,7 @@ const chalk = require('chalk');
 const http = require('http');
 const app = require('../server');
 
-const port = process.env.SHOPIFY_APP_PORT || '3000';
+const port = process.env.SHOPIFY_APP_PORT || '5000';
 app.set('port', port);
 
 const server = http.createServer(app);
