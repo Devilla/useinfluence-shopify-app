@@ -15,9 +15,3 @@ server.listen(port, err => {
   }
   console.log(`🚀 Now listening on port ${chalk.green(port)}`);
 });
-
-
-
-// app.listen(process.env.PORT,process.env.IP,function(){
-//     console.log("Server has Started...");
-// });
