@@ -12,7 +12,7 @@
     "precommit": "npm run pretty"
   },
   "engines": {
-    "node": "8.1.0",
+    "node": "10.6.0",
     "npm": "5.0.3"
   },
   "browsers": [
