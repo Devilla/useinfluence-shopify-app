@@ -2,5 +2,4 @@
 .DS_Store
 dump.rdb
 main.js
-db.sqlite3
 node_modules
