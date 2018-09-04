@@ -98,7 +98,6 @@ app.get('/admin/apps/influence', (req, res) => res.render('install'));
 //Authentication Influence
 var url = 'https://strapi.useinfluence.co/auth/local/';
 var data = {"identifier": "shankyrana@hotmail.com", "password": "12345"};
-var jwt = null;
 fetch(url, {
   method: 'POST', // or 'PUT'
   body: JSON.stringify(data), // data can be `string` or {object}!
@@ -106,21 +105,18 @@ fetch(url, {
     'Content-Type': 'application/json'
   }
 }).then(res => res.json())
-.then(response => {
- jwt = JSON.stringify( 'Bearer '+response.jwt);
-  console.log(jwt);
-  console.log('Success:', JSON.stringify(response.jwt));
+.then(async response => {
+  console.log('Success:', response.jwt);
 
   //Campaign fetch from UseInfluence
   var campaign_url = 'https://strapi.useinfluence.co/campaign';
-  var campaign_data = jwt;
-  fetch(url, {
+  await fetch(campaign_url, {
     method: 'GET',
     headers:{
-      'authorization': campaign_data
+      Authorization: 'Bearer '+response.jwt
     }
   }).then(res => res.json())
-  .then(response => console.log('Campain Success:', campaign_data))
+  .then(response => console.log('Campain Success:', JSON.stringify(response)))
   .catch(error => console.error('Error:', error));
 })
 .catch(error => console.error('Error:', error));
