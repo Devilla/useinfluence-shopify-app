@@ -116,7 +116,7 @@ fetch(url, {
       Authorization: 'Bearer '+response.jwt
     }
   }).then(res => res.json())
-  .then(response => console.log('Campain Success:', response))
+  .then(response => console.log('Campain Success:', response[0].campaignName, response[0].webhooks.trackingId ))
   .catch(error => console.error('Error:', error));
 })
 .catch(error => console.error('Error:', error));
