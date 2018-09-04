@@ -95,6 +95,37 @@ if (isDevelopment) {
 app.get('/install', (req, res) => res.render('install'));
 app.get('/admin/apps/influence', (req, res) => res.render('install'));
 
+//Authentication Influence
+var url = 'https://strapi.useinfluence.co/auth/local/';
+var data = {"identifier": "shankyrana@hotmail.com", "password": "12345"};
+var jwt = null;
+fetch(url, {
+  method: 'POST', // or 'PUT'
+  body: JSON.stringify(data), // data can be `string` or {object}!
+  headers:{
+    'Content-Type': 'application/json'
+  }
+}).then(res => res.json())
+.then(response => {
+ jwt = JSON.stringify(response.jwt);
+  console.log(jwt);
+  console.log('Success:', JSON.stringify(response.jwt));
+
+  //Campaign fetch from UseInfluence
+  var campaign_url = 'https://strapi.useinfluence.co/campaign';
+  var campaign_data = "Bearer " + jwt;
+  fetch(url, {
+    method: 'GET',
+    headers:{
+      'authorization': campaign_data
+    }
+  }).then(res => res.json())
+  .then(response => console.log('Campain Success:', JSON.stringify(response)))
+  .catch(error => console.error('Error:', error));
+})
+.catch(error => console.error('Error:', error));
+
+
 // Create shopify middlewares and router
 const shopify = ShopifyExpress(shopifyConfig);
 
