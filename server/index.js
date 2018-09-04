@@ -107,7 +107,7 @@ fetch(url, {
   }
 }).then(res => res.json())
 .then(response => {
- jwt = "Bearer" + JSON.stringify(response.jwt);
+ jwt = JSON.stringify( 'Bearer'+response.jwt);
   console.log(jwt);
   console.log('Success:', JSON.stringify(response.jwt));
 
