@@ -108,19 +108,20 @@ fetch(url, {
 }).then(res => res.json())
 .then(response => {
  jwt = JSON.stringify(response.jwt);
+ jwt = "Bearer" + jwt;
   console.log(jwt);
   console.log('Success:', JSON.stringify(response.jwt));
 
   //Campaign fetch from UseInfluence
   var campaign_url = 'https://strapi.useinfluence.co/campaign';
-  var campaign_data = "Bearer " + jwt;
+  var campaign_data = jwt;
   fetch(url, {
     method: 'GET',
     headers:{
       'authorization': campaign_data
     }
   }).then(res => res.json())
-  .then(response => console.log('Campain Success:', JSON.stringify(response)))
+  .then(response => console.log('Campain Success:', campaign_data))
   .catch(error => console.error('Error:', error));
 })
 .catch(error => console.error('Error:', error));
