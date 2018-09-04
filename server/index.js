@@ -116,7 +116,7 @@ fetch(url, {
       Authorization: 'Bearer '+response.jwt
     }
   }).then(res => res.json())
-  .then(response => console.log('Campain Success:', JSON.stringify(response)))
+  .then(response => console.log('Campain Success:', response))
   .catch(error => console.error('Error:', error));
 })
 .catch(error => console.error('Error:', error));
