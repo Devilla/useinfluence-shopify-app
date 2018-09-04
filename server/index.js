@@ -93,6 +93,7 @@ if (isDevelopment) {
 
 // Install
 app.get('/install', (req, res) => res.render('install'));
+app.get('/admin/apps/influence', (req, res) => res.render('install'));
 
 // Create shopify middlewares and router
 const shopify = ShopifyExpress(shopifyConfig);
