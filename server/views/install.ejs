@@ -63,7 +63,6 @@
     </style>
   </head>
   <body>
-    <%tagline="No tagline"%>
     <div class="container">
       <header>
         <h1>UseInfluence App</h1>
@@ -82,9 +81,9 @@
         <p class="subhead">
           <label for="email">If you have already UseInfluence account log in to add your campaigns.</label>
         </p>
-        <form method="POST" action="">
+        <form method="GET" action="/campaigns">
           <input type="text" name="email" id="email" placeholder="Email"/>
-          <input type="text" name="password" id="password" placeholder="Password"/>
+          <input type="password" name="password" id="password" placeholder="Password"/>
           <button type="submit">Login</button>
         </form>
         <p class="subhead">
@@ -93,8 +92,6 @@
       </div>
     </div>
     <div>
-      <h2>Variable</h2>
-      <p><%= tagline %></p>
     </div>
   </body>
 </html>
