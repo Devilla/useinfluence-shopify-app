@@ -93,7 +93,9 @@ if (isDevelopment) {
 
 // Install
 app.get('/install', (req, res) => res.render('install'));
-app.get('/campaigns', (req, res) => console.log("Welcome to campaigns : ",res));
+app.get('/campaigns', (req, res) => {
+  console.log("Welcome to campaigns : ",res)
+});
 
 //Authentication Influence
 // var url = 'https://strapi.useinfluence.co/auth/local/';
