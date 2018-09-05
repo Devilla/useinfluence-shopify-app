@@ -116,7 +116,9 @@ fetch(url, {
       Authorization: 'Bearer '+response.jwt
     }
   }).then(res => res.json())
-  .then(response => console.log('Campain Success:', response[0].campaignName, response[0].webhooks.trackingId ))
+  .then(response => {
+    console.log('Campain Success:', response[0].campaignName, response[0].webhooks.trackingId )
+  })
   .catch(error => console.error('Error:', error));
 })
 .catch(error => console.error('Error:', error));
@@ -146,6 +148,14 @@ app.post('/order-create', withWebhook((error, request) => {
     console.error(error);
     return;
   }
+  // index page
+app.get('/install', function(req, res) {
+  var tagline = "Any code of your own that you haven't looked at for six or more months might as well have been written by someone else.";
+
+  res.render('./server/views/install', {
+      tagline: tagline
+  });
+});
 
   console.log('We got a webhook!');
   console.log('Details: ', request.webhook);
