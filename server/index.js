@@ -149,10 +149,10 @@ app.post('/order-create', withWebhook((error, request) => {
     return;
   }
   // index page
-app.get('/install', function(req, res) {
-  var tagline = "Any code of your own that you haven't looked at for six or more months might as well have been written by someone else.";
+app.post('/install', function(req, res) {
+  const tagline = "This is a tagline.";
 
-  res.render('./server/views/install', {
+  res.render('install', {
       tagline: tagline
   });
 });

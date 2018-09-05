@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><%= title %></title>
+    <% console.log(title)%>
   </head>
   <body>
     <script src="https://cdn.shopify.com/s/assets/external/app.js"></script>
 
     <script>
-      window.apiKey = "<%= SHOPIFY_APP_KEY %>"
+      window.apiKey = "<%= apiKey %>"
       window.shopOrigin = "https://<%= shop %>"
 
       const shopifyAppConfig = {
