@@ -94,7 +94,7 @@ if (isDevelopment) {
 // Install
 app.get('/install', (req, res) => res.render('install'));
 app.get('/campaigns', (req, res) => {
-  console.log("Welcome to campaigns : ",req.IncomingMessage.originalUrl,req.body,res.formData,res.formdata)
+  console.log("Welcome to campaigns : ",req.IncomingMessage)
 });
 
 //Authentication Influence
