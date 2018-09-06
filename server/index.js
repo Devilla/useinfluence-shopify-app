@@ -138,8 +138,9 @@ app.post('/campaigns', (req, res) => {
       }
     }).then(res => res.json())
     .then(response => {
-      console.log('Campain Success:', response[0].campaignName, response[0].webhooks.trackingId)
-
+       response.map((res)=>{
+         res.campaignName + ' ' + res.trackingId
+      })
     })
     .catch(error => console.error('Error:', error));
   })
