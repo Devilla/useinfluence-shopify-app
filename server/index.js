@@ -7,6 +7,7 @@ const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
 const path = require('path');
 const logger = require('morgan');
+var bodyParser = require('body-parser')
 
 const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
@@ -54,6 +55,9 @@ const registerWebhook = function(shopDomain, accessToken, webhook) {
 const app = express();
 const isDevelopment = NODE_ENV !== 'production';
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(logger('dev'));
@@ -93,35 +97,36 @@ if (isDevelopment) {
 
 // Install
 app.get('/install', (req, res) => res.render('install'));
-app.get('/campaigns', (req, res) => {
-  console.log("Welcome to campaigns : ",req.IncomingMessage.originalUrl,req.body,res.formData,res.formdata)
+app.post('/campaigns', (req, res) => {
+  console.log("Welcome to campaigns : ",req.body.email, req.body.password);
+  //Authentication Influence
+  var url = 'https://strapi.useinfluence.co/auth/local/';
+  var data = {"identifier": req.body.email, "password": req.body.password};
+  fetch(url, {
+    method: 'POST', // or 'PUT'
+    body: JSON.stringify(data), // data can be `string` or {object}!
+    headers:{
+      'Content-Type': 'application/json'
+    }
+  }).then(res => res.json())
+  .then(async response => {
+    console.log('Success:', response.jwt);
+
+    //Campaign fetch from UseInfluence
+    var campaign_url = 'https://strapi.useinfluence.co/campaign';
+    await fetch(campaign_url, {
+      method: 'GET',
+      headers:{
+        Authorization: 'Bearer '+response.jwt
+      }
+    }).then(res => res.json())
+    .then(response => console.log('Campain Success:', response[0].campaignName, response[0].webhooks.trackingId ))
+    .catch(error => console.error('Error:', error));
+  })
+  .catch(error => console.error('Error:', error));
 });
 
-//Authentication Influence
-// var url = 'https://strapi.useinfluence.co/auth/local/';
-// var data = {"identifier": "shankyrana@hotmail.com", "password": "12345"};
-// fetch(url, {
-//   method: 'POST', // or 'PUT'
-//   body: JSON.stringify(data), // data can be `string` or {object}!
-//   headers:{
-//     'Content-Type': 'application/json'
-//   }
-// }).then(res => res.json())
-// .then(async response => {
-//   console.log('Success:', response.jwt);
-//
-//   //Campaign fetch from UseInfluence
-//   var campaign_url = 'https://strapi.useinfluence.co/campaign';
-//   await fetch(campaign_url, {
-//     method: 'GET',
-//     headers:{
-//       Authorization: 'Bearer '+response.jwt
-//     }
-//   }).then(res => res.json())
-//   .then(response => console.log('Campain Success:', response[0].campaignName, response[0].webhooks.trackingId ))
-//   .catch(error => console.error('Error:', error));
-// })
-// .catch(error => console.error('Error:', error));
+
 
 
 // Create shopify middlewares and router
