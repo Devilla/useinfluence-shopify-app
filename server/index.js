@@ -24,28 +24,30 @@ const {
   SHOPIFY_APP_SECRET,
   NODE_ENV,
 } = process.env;
-
+console.log(SHOPIFY_APP_KEY,SHOPIFY_APP_HOST, SHOPIFY_APP_SECRET );
 const shopifyConfig = {
   host: SHOPIFY_APP_HOST,
   apiKey: SHOPIFY_APP_KEY,
   secret: SHOPIFY_APP_SECRET,
-  scope: ['read_script_tags','write_script_tags','write_orders, write_products'],
+  scope: ['read_script_tags, write_script_tags'],
   shopStore: new MemoryStrategy(),
   afterAuth(request, response) {
     const { session: { accessToken, shop } } = request;
-
+//this runs automstically? yeah ekbar app uninstall marke chla kr dekhte h run run
+console.log(accessToken);
+//this is undefined
   fetch('https://useinfluencestore.myshopify.com/admin/script_tags.json', {
-    method: 'POST', // or 'PUT'
-    body: JSON.stringify({
+    method: 'POST',
+    headers:{
+      'Content-Type': 'application/json',
+      'X-Shopify-Access-Token': session.accessToken
+    },
+    body: {
       "script_tag": {
         "event": "onload",
         "src": "https://storage.googleapis.com/influence-197607.appspot.com/influence-analytics.js?trackingId=INF-406jkjiji00uszj"
       }
-    }), // data can be `string` or {object}!
-      headers:{
-        'Content-Type': 'application/json',
-        'X-Shopify-Access-Token': accessToken
-      }
+    }
     })
 
     registerWebhook(shop, accessToken, {
