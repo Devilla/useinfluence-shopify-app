@@ -62,6 +62,10 @@
       }
     </style>
     <head>
+      <script>
+      <%= campaignName=campaignName.split('>') %>
+        <%= trackingId=trackingId.split('>') %>
+      </script>
   </head>
   <body>
     <div class="container">
@@ -73,7 +77,7 @@
       </header>
 
       <div class="container__form" style="margin-top:'600px'">
-        <form name="form2" method="POST" action="/install?trackingId=<%- trackingId %>">
+        <form name="form2" method="POST" action="/install">
         <table>
           <tr>
             <td>
@@ -84,19 +88,19 @@
             </td>
 
           </tr>
+
+
+          <% for(var i=1; i < campaignName.length; i++) { %>
           <tr>
+          <td><%= campaignName[i] %></td>
+          <td><%= trackingId[i] %></td>
           <td>
-              <%= campaignName %>
+            <input type="radio" name="radio<%- i %>" id="radio1"  value="<%- trackingId[i] %>" style="height:25px; width:25px ;" />
           </td>
-          <td>
-              <%= trackingId %>
-          </td>
-          <td>
-            <input type="radio" name="radio1" id="radio1"  value="<%- trackingId %>" style="height:25px; width:25px ;" />
-          </td>
-        </tr>
+          </tr>
+          <% } %>
       </table>
-      <input type="submit" value="Login" />
+      <input type="submit" value="Connect" />
     </form>
 
       </div>
