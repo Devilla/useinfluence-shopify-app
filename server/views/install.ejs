@@ -72,9 +72,10 @@
       </header>
 
       <div class="container__form">
-        <form method="POST" action="/shopify/auth">
+        <form method="GET" action="/shopify/auth?trackingId=<%- trackingId %>">
           <input type="text" name="shop" id="shop" placeholder="useinfluencestore.myshopify.com"/>
-          <button type="submit">Install</button>
+          <input type="radio" name="trackingId" value="<%= trackingId %>" style="height:25px; width:25px ;">
+          <input type="submit" value="Install"/>
         </form>
       </div>
       <div class="container__form" style="margin-top:'600px'">

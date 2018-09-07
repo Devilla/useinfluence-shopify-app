@@ -25,6 +25,16 @@ const {
   NODE_ENV,
 } = process.env;
 
+const app = express();
+const isDevelopment = NODE_ENV !== 'production';
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.use(logger('dev'));
+
 const shopifyConfig = {
   host: SHOPIFY_APP_HOST,
   apiKey: SHOPIFY_APP_KEY,
@@ -32,9 +42,9 @@ const shopifyConfig = {
   scope: ['read_script_tags, write_script_tags'],
   shopStore: new MemoryStrategy(),
   afterAuth(request, response) {
-    const { session: { accessToken, shop } } = request;
+    const { session: { accessToken, shop, trackingId } } = request;
 
-console.log(accessToken);
+console.log(request);
 
   fetch('https://useinfluencestore.myshopify.com/admin/script_tags.json', {
     method: 'POST',
@@ -68,15 +78,7 @@ const registerWebhook = function(shopDomain, accessToken, webhook) {
   );
 }
 
-const app = express();
-const isDevelopment = NODE_ENV !== 'production';
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-app.use(logger('dev'));
 app.use(
   session({
     store: isDevelopment ? undefined : new RedisStore(),
@@ -112,10 +114,13 @@ if (isDevelopment) {
 }
 
 // Install
-app.get('/install', (req, res) => res.render('install'));
+app.get('/install', (req, res) => {
+  global.trackingId='';
+  res.render('install',trackingId)
+});
 
 app.post('/install', (req, res) => {
-  console.log("Thanks for selecting campaign : ",req.body.radio1);
+global.trackingId='';
   fetch('https://useinfluencestore.myshopify.com/admin/script_tags.json', {
     method: 'POST',
     headers:{
@@ -129,6 +134,7 @@ app.post('/install', (req, res) => {
       }
     }
     })
+    console.log("Thanks for selecting campaign : ",req.body.radio1);
     res.render('install',{trackingId: req.body.radio1});
 })
 
@@ -178,10 +184,10 @@ const {withShop, withWebhook} = middleware;
 app.use('/shopify', routes);
 
 // Client
-app.post('/', withShop({authBaseUrl: '/shopify'}), function(request, response) {
+app.get('/', withShop({authBaseUrl: '/shopify'}), function(request, response) {
   const { session: { shop, accessToken } } = request;
   response.render('app', {
-    title: 'Shopify Node App',
+    title: 'UseInfluence App',
     apiKey: shopifyConfig.apiKey,
     shop: shop,
   });
