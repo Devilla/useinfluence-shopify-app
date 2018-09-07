@@ -139,10 +139,8 @@ app.post('/campaigns', (req, res) => {
       }
     }).then(resp => resp.json())
     .then(response => {
-       response.map((resp)=>{
-      console.log(resp.campaignName,resp.trackingId)
-        res.status('200').send(resp.campaignName);
-      })
+      // console.log(resp.campaignName,resp.trackingId)
+        res.status('200').send(response);
     })
     .catch(error => console.error('Error:', error));
   })
