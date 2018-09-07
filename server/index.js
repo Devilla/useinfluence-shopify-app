@@ -44,8 +44,8 @@ const shopifyConfig = {
   afterAuth(request, response) {
     const { session: { accessToken, shop, trackingId } } = request;
 
-console.log(response);
-
+console.log(request);
+//Replace store name with 'shop'
   fetch('https://useinfluencestore.myshopify.com/admin/script_tags.json', {
     method: 'POST',
     headers:{
