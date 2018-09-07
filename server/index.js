@@ -129,6 +129,7 @@ app.post('/install', (req, res) => {
       }
     }
     })
+    res.render('install',{trackingId: req.body.radio1});
 })
 
 app.post('/campaigns', (req, res) => {
@@ -177,7 +178,7 @@ const {withShop, withWebhook} = middleware;
 app.use('/shopify', routes);
 
 // Client
-app.get('/', withShop({authBaseUrl: '/shopify'}), function(request, response) {
+app.post('/', withShop({authBaseUrl: '/shopify'}), function(request, response) {
   const { session: { shop, accessToken } } = request;
   response.render('app', {
     title: 'Shopify Node App',
