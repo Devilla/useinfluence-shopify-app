@@ -115,7 +115,7 @@ if (isDevelopment) {
 app.get('/install', (req, res) => res.render('install'));
 
 app.post('/install', (req, res) => {
-  console.log("Thanks for selecting campaign : ",req.body.radio);
+  console.log("Thanks for selecting campaign : ",req.body.radio1);
   fetch('https://useinfluencestore.myshopify.com/admin/script_tags.json', {
     method: 'POST',
     headers:{
