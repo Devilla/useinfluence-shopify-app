@@ -113,7 +113,8 @@ if (isDevelopment) {
 
 // Install
 app.get('/install', (req, res) => res.render('install'));
-app.get('/campaigns', (req, res) => {
+app.post('/campaigns', (req, res) => {
+  global.campaignName;
   console.log("Welcome to campaigns : ",req.body.email, req.body.password);
   //Authentication Influence
   var url = 'https://strapi.useinfluence.co/auth/local/';
@@ -136,20 +137,17 @@ app.get('/campaigns', (req, res) => {
       headers:{
         Authorization: 'Bearer '+response.jwt
       }
-    }).then(res => res.json())
+    }).then(resp => resp.json())
     .then(response => {
-      console.log('==============',response)
-      //  response.map((res)=>{
-      //    res.campaignName + ' ' + res.trackingId
-      // })
+       response.map((resp)=>{
+      console.log(resp.campaignName,resp.trackingId)
+        res.status('200').send(resp.campaignName);
+      })
     })
     .catch(error => console.error('Error:', error));
   })
   .catch(error => console.error('Error:', error));
-
-  res.render('campaigns')
 });
-
 
 
 
