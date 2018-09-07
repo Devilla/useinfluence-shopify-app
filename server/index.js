@@ -44,7 +44,7 @@ const shopifyConfig = {
   afterAuth(request, response) {
     const { session: { accessToken, shop, trackingId } } = request;
 
-console.log(request);
+console.log(response);
 
   fetch('https://useinfluencestore.myshopify.com/admin/script_tags.json', {
     method: 'POST',
