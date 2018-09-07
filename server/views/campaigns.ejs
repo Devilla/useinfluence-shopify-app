@@ -65,30 +65,27 @@
   <body>
     <div class="container">
       <header>
-        <h1>UseInfluence</h1>
+        <h1>Campaigns</h1>
         <p class="subhead">
-          <label for="shop">Enter your shop domain to log in or install app.</label>
+          <label for="shop">Select your campaign to show notifications on your Shopify store.</label>
         </p>
       </header>
 
-      <div class="container__form">
-        <form method="GET" action="/shopify/auth">
-          <input type="text" name="shop" id="shop" placeholder="useinfluencestore.myshopify.com"/>
-          <button type="submit">Install</button>
-        </form>
-      </div>
+
       <div class="container__form" style="margin-top:'600px'">
-        <p class="subhead">
-          <label for="email">If you have already UseInfluence account log in to add your campaigns.</label>
-        </p>
-        <form name="form1" method="GET" action="/campaigns">
-          <input type="text" name="email" id="email" placeholder="Email"/>
-          <input type="password" name="password" id="password" placeholder="Password"/>
-          <input type="submit" value="Login" />
-        </form>
-        <p class="subhead">
-          <a href="https://useinfluence.co/signup" >signup here</a>
-        </p>
+        <ul>
+          <li>
+            <div>
+              <span>
+                Campaign
+              </span>
+              <span>
+                TrackingId
+              </span>
+            </div>
+          </li>
+        </ul>
+
       </div>
     </div>
     <div>
