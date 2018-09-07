@@ -61,6 +61,11 @@
         margin: auto;
       }
     </style>
+    <head>
+  <script>
+    var data = <%- data %>;
+    console.dir(data);
+  </script>
   </head>
   <body>
     <div class="container">
@@ -81,6 +86,7 @@
               <span>
                 TrackingId
               </span>
+               <%= data %>
             </div>
           </li>
         </ul>
