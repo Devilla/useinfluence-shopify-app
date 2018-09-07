@@ -62,10 +62,6 @@
       }
     </style>
     <head>
-  <script>
-    var data = <%- data %>;
-    console.dir(data);
-  </script>
   </head>
   <body>
     <div class="container">
@@ -77,19 +73,25 @@
       </header>
 
       <div class="container__form" style="margin-top:'600px'">
-        <ul>
-          <li>
-            <div>
-              <span>
-                Campaign
-              </span>
-              <span>
-                TrackingId
-              </span>
-               <%= data %>
-            </div>
-          </li>
-        </ul>
+        <table>
+          <tr>
+            <td>
+              Campaign
+            </td>
+            <td>
+              TrackingId
+            </td>
+
+          </tr>
+          <tr>
+          <td>
+              <%= campaignName %>
+          </td>
+          <td>
+              <%= trackingId %>
+          </td>
+        </tr>
+      </table>
 
       </div>
     </div>

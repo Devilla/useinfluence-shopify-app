@@ -141,7 +141,7 @@ app.post('/campaigns', (req, res) => {
     .then(response => {
       // console.log(resp.campaignName,resp.trackingId)
         // res.status('200').send(response);
-        res.render('campaigns', { data: JSON.stringify(response) });
+        res.render('campaigns', { campaignName: response[0].campaignName, trackingId: response[0].trackingId});
     })
     .catch(error => console.error('Error:', error));
   })
