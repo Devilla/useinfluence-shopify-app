@@ -24,7 +24,7 @@ const {
   SHOPIFY_APP_SECRET,
   NODE_ENV,
 } = process.env;
-console.log(SHOPIFY_APP_KEY,SHOPIFY_APP_HOST, SHOPIFY_APP_SECRET );
+
 const shopifyConfig = {
   host: SHOPIFY_APP_HOST,
   apiKey: SHOPIFY_APP_KEY,
@@ -33,14 +33,14 @@ const shopifyConfig = {
   shopStore: new MemoryStrategy(),
   afterAuth(request, response) {
     const { session: { accessToken, shop } } = request;
-//this runs automstically? yeah ekbar app uninstall marke chla kr dekhte h run run
+
 console.log(accessToken);
-//this is undefined
+
   fetch('https://useinfluencestore.myshopify.com/admin/script_tags.json', {
     method: 'POST',
     headers:{
       'Content-Type': 'application/json',
-      'X-Shopify-Access-Token': session.accessToken
+      'X-Shopify-Access-Token': accessToken
     },
     body: {
       "script_tag": {
@@ -113,6 +113,24 @@ if (isDevelopment) {
 
 // Install
 app.get('/install', (req, res) => res.render('install'));
+
+app.post('/install', (req, res) => {
+  console.log("Thanks for selecting campaign : ",req.body.radio);
+  fetch('https://useinfluencestore.myshopify.com/admin/script_tags.json', {
+    method: 'POST',
+    headers:{
+      'Content-Type': 'application/json',
+      'X-Shopify-Access-Token': 'accessToken'
+    },
+    body: {
+      "script_tag": {
+        "event": "onload",
+        "src": "https://storage.googleapis.com/influence-197607.appspot.com/influence-analytics.js?trackingId=INF-406jkjiji00uszj"
+      }
+    }
+    })
+})
+
 app.post('/campaigns', (req, res) => {
   global.campaignName;
   console.log("Welcome to campaigns : ",req.body.email, req.body.password);
@@ -139,8 +157,6 @@ app.post('/campaigns', (req, res) => {
       }
     }).then(resp => resp.json())
     .then(response => {
-      // console.log(resp.campaignName,resp.trackingId)
-        // res.status('200').send(response);
         res.render('campaigns', { campaignName: response[0].campaignName, trackingId: response[0].trackingId});
     })
     .catch(error => console.error('Error:', error));

@@ -73,6 +73,7 @@
       </header>
 
       <div class="container__form" style="margin-top:'600px'">
+        <form name="form2" method="POST" action="/install">
         <table>
           <tr>
             <td>
@@ -90,8 +91,13 @@
           <td>
               <%= trackingId %>
           </td>
+          <td>
+            <input type="radio" name="radio1" id="radio1"  value="<%= trackingId %>" style="height:25px; width:25px ;" />
+          </td>
         </tr>
       </table>
+      <input type="submit" value="Login" />
+    </form>
 
       </div>
     </div>
