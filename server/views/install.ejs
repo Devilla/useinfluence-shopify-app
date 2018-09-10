@@ -66,13 +66,14 @@
     <div class="container">
       <header>
         <h1>UseInfluence</h1>
+        <%= trackingId %>
         <p class="subhead">
           <label for="shop">Enter your shop domain to log in or install app.</label>
         </p>
       </header>
 
       <div class="container__form">
-        <form method="GET" action="/shopify/auth?nonce=<%- trackingId %>"> 
+        <form method="GET" action="/shopify/auth?nonce=<%- trackingId %>">
           <input type="text" name="shop" id="shop" placeholder="useinfluencestore.myshopify.com"/>
           <input type="radio" name="trackingId" value="<%- trackingId %>" style="height:25px; width:25px ;">
           <input type="submit" value="Install"/>

@@ -77,7 +77,7 @@
       </header>
 
       <div class="container__form" style="margin-top:'600px'">
-        <form name="form2" method="POST" action="/install">
+
         <table>
           <tr>
             <td>
@@ -91,11 +91,12 @@
 
 
           <% for(var i=1; i < campaignName.length; i++) { %>
+          <form name="form2" method="POST" action="/install?trackingId=<%= trackingId[i] %>"">
           <tr>
           <td><%= campaignName[i] %></td>
           <td><%= trackingId[i] %></td>
           <td>
-            <input type="radio" name="radio1" id="radio1"  value="<%- trackingId[i] %>" style="height:25px; width:25px ;" />
+            <input type="radio" name="radio1" id="radio1"  value="<%= trackingId[i] %>" style="height:25px; width:25px ;" />
           </td>
           </tr>
           <% } %>

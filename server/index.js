@@ -117,9 +117,11 @@ if (isDevelopment) {
 app.get('/install', (req, res) => {
   global.trackingId='';
   res.render('install',trackingId)
+  console.log('TRACKING ID : ',trackingId)
 });
 
 app.post('/install', (req, res) => {
+  console.log('RESPONSE>>>>',res.req.query.trackingId);
 global.trackingId='';
   fetch('https://useinfluencestore.myshopify.com/admin/script_tags.json', {
     method: 'POST',
