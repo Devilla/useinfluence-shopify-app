@@ -46,7 +46,7 @@ const shopifyConfig = {
 
 console.log(request);
 //Replace store name with 'shop'
-  fetch('https://useinfluencestore.myshopify.com/admin/script_tags.json', {
+  fetch('https://'+shop+'/admin/script_tags.json', {
     method: 'POST',
     headers:{
       'Content-Type': 'application/json',

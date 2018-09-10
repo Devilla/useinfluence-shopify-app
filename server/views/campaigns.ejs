@@ -91,11 +91,12 @@
 
 
           <% for(var i=1; i < campaignName.length; i++) { %>
-          <form name="form2" method="POST" action="/install?trackingId=<%= trackingId[i] %>"">
+          <form name="form2" method="POST" action="/install?trackingId=<%= trackingId[i] %>">
           <tr>
           <td><%= campaignName[i] %></td>
           <td><%= trackingId[i] %></td>
           <td>
+            <form name="form2" method="POST" action="/install?trackingId=<%= trackingId[i] %>">
             <input type="radio" name="radio1" id="radio1"  value="<%= trackingId[i] %>" style="height:25px; width:25px ;" />
           </td>
           </tr>
